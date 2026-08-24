@@ -1,0 +1,20 @@
+{
+  "version": 4,
+  "configurations": [
+    {
+      "name": "Mac",
+      "compilerPath": "/usr/bin/clang++",
+      "cStandard": "c17",
+      "cppStandard": "c++20",
+      "intelliSenseMode": "macos-clang-arm64",
+      "includePath": [
+        "${workspaceFolder}/**",
+        "/opt/homebrew/include",
+        "/opt/homebrew/include/SDL2"
+      ],
+      "defines": [
+        "_THREAD_SAFE"
+      ]
+    }
+  ]
+}
