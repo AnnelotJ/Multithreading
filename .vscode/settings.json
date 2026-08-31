@@ -1,0 +1,26 @@
+{
+  "C_Cpp.intelliSenseEngine": "default",
+  "C_Cpp.autocomplete": "default",
+  "C_Cpp.suggestSnippets": true,
+  "C_Cpp.autocompleteAddParentheses": true,
+  "C_Cpp.errorSquiggles": "enabled",
+  "C_Cpp.caseSensitiveFileSupport": "default",
+  "[cpp]": {
+    "editor.quickSuggestions": {
+      "other": true,
+      "comments": false,
+      "strings": false
+    },
+    "editor.suggestOnTriggerCharacters": true,
+    "editor.acceptSuggestionOnEnter": "on",
+    "editor.wordBasedSuggestions": "off",
+    "editor.suggest.showFunctions": true,
+    "editor.suggest.showStructs": true,
+    "editor.suggest.showKeywords": true,
+    "editor.suggest.snippetsPreventQuickSuggestions": false,
+    "editor.defaultFormatter": "ms-vscode.cpptools"
+  },
+  "files.associations": {
+    "*.h": "cpp"
+  }
+}
