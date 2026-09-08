@@ -6,10 +6,6 @@
 
 
 int main () { 
-    int amountOfThreads; 
-    
-    std::cout<<"How many threads would you like?\n";
-    std::cin>>amountOfThreads;
 
     checkLoadInSDLLib();
     generateWindow();
