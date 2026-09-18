@@ -29,3 +29,8 @@ void generateWindow(){
     SDL_Quit();
     
 }
+
+void paintSquare (){ 
+    SDL_SetRenderDrawColor(rebder)
+
+}
