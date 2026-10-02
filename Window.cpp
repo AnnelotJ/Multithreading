@@ -16,7 +16,7 @@ void generateWindow(){
     SDL_Event e;
     int isrunning = 1; 
 
-    app.window = SDL_CreateWindow("Mr Teddy Bear",460,460, 0);
+    app.window = SDL_CreateWindow("Mr. Teddy Bear",600,600, 0);
     app.renderer = SDL_CreateRenderer(app.window, nullptr); 
     SDL_SetRenderVSync(app.renderer,1);
 
@@ -31,8 +31,14 @@ void generateWindow(){
         SDL_RenderClear(app.renderer); 
         
         // x,y,size,r,g,b
-        Sqaure Sqaure = {0,100,50,40,0,40};
-        paintSqaure(app.renderer, Sqaure);
+        Sqaure Sqaure0 = {0,0,300,40,0,40};
+        Sqaure Sqaure1 = {300,0,300,0,40,40};
+        Sqaure Sqaure2 = {0,300,300,0,80,40};
+        Sqaure Sqaure3 = {300,300,300,80,0,40};
+        paintSqaure(app.renderer, Sqaure0);
+        paintSqaure(app.renderer, Sqaure1);
+        paintSqaure(app.renderer, Sqaure2);
+        paintSqaure(app.renderer, Sqaure3);
         SDL_RenderPresent(app.renderer);
     }
 

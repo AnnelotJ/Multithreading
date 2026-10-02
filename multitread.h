@@ -22,4 +22,4 @@
     void checkLoadInSDLLib ();
     void generateWindow();
     void paintSqaure(SDL_Renderer*, const Sqaure&);
-    
+    void makeSqaures (); 
