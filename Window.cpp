@@ -12,11 +12,13 @@ void checkLoadInSDLLib(){
 }
 
 void generateWindow(){ 
-    SDL_Window* window = nullptr; 
+    App app;
     SDL_Event e;
     int isrunning = 1; 
 
-    window = SDL_CreateWindow("Mr Teddy Bear",460,460, 0);
+    app.window = SDL_CreateWindow("Mr Teddy Bear",460,460, 0);
+    app.renderer = SDL_CreateRenderer(app.window, nullptr); 
+    SDL_SetRenderVSync(app.renderer,1);
 
     while(isrunning) { 
         while(SDL_PollEvent(&e) != 0){
@@ -24,12 +26,26 @@ void generateWindow(){
                 isrunning = 0; 
             }
         }
-    }  
-    SDL_DestroyWindow(window);
+
+        SDL_SetRenderDrawColor(app.renderer,4,255,255,255);
+        SDL_RenderClear(app.renderer); 
+        
+        // x,y,size,r,g,b
+        Sqaure Sqaure = {0,100,50,40,0,40};
+        paintSqaure(app.renderer, Sqaure);
+        SDL_RenderPresent(app.renderer);
+    }
+
+    SDL_DestroyRenderer(app.renderer);
+    SDL_DestroyWindow(app.window);
     SDL_Quit();
     
 }
-
-void print (){
-    std::cout<<"hello";
+void paintSqaure(SDL_Renderer* renderer, const Sqaure& sqaure){
+    
+    SDL_SetRenderDrawColor(renderer, sqaure.r, sqaure.b, sqaure.b, 255);
+    SDL_FRect rect = {sqaure.x, sqaure.y, sqaure.size, sqaure.size}; 
+    SDL_RenderFillRect(renderer, &rect);
+    
 }
+

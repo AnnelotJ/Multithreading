@@ -10,7 +10,6 @@ int main () {
     checkLoadInSDLLib();
     generateWindow();
 
-    std::thread t (print);
-    t.join();
+
 }
 

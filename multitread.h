@@ -7,9 +7,19 @@
         SDL_Renderer* renderer = nullptr;
     };
 
+    struct Sqaure { 
+        float x; 
+        float y; 
+        float size; 
+        // color 
+        Uint8 r; 
+        Uint8 g; 
+        Uint8 b; 
+    };
+
 
     // Window.cpp
     void checkLoadInSDLLib ();
     void generateWindow();
-    void paintSquare();
-    void print();
+    void paintSqaure(SDL_Renderer*, const Sqaure&);
+    
