@@ -30,7 +30,6 @@ void generateWindow(){
     
 }
 
-void paintSquare (){ 
-    SDL_SetRenderDrawColor(rebder)
-
+void print (){
+    std::cout<<"hello";
 }
