@@ -20,6 +20,6 @@
 
     // Window.cpp
     void checkLoadInSDLLib ();
-    void generateWindow();
+    void generateWindow(const std::vector<Sqaure> sqaures);
     void paintSqaure(SDL_Renderer*, const Sqaure&);
-    void makeSqaures (); 
+    std::vector<Sqaure> makeSqaures (); 
