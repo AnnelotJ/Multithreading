@@ -18,8 +18,8 @@
     };
 
 
-    // Window.cpp
     void checkLoadInSDLLib ();
     void generateWindow(const std::vector<Sqaure> sqaures);
     void paintSqaure(SDL_Renderer*, const Sqaure&);
     std::vector<Sqaure> makeSqaures (); 
+    void changeColor(std::vector<Sqaure>,std::mutex,std::atomic<bool>,int);

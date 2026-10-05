@@ -1,6 +1,8 @@
 #include <iostream>
 #include "multitread.h"
 #include <thread>
+#include <atomic>
+#include <unistd.h>
 
 // clang++ -std=c++17 main.cpp window.cpp -o main $(pkg-config --cflags --libs sdl3)
 // g++ -std=c++17 main.cpp window.cpp -o main.exe $(pkg-config --cflags --libs sdl3)
@@ -21,12 +23,22 @@ std::vector<Sqaure> makeSqaures (){
 
     return sqaures;
 }
+void changeColor(std::vector<Sqaure>sqaure,std::mutex& lock,std::atomic<bool>& running, int i){ 
+    while(running){ 
+        sleep(3);
+        int randomNum = rand() % 255;
+        std::cout<<randomNum;
+    }
+}
+
 
 int main () { 
 
     checkLoadInSDLLib();
-    std::vector<Sqaure> sqaures = makeSqaures();
-    generateWindow(sqaures);
+    // std::vector<Sqaure> sqaures = makeSqaures();
+    // generateWindow(sqaures);
+
+    changeColor();
 
 
 }
