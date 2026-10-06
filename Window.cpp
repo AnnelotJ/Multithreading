@@ -1,8 +1,6 @@
 #include <iostream>
 #include <SDL3/SDL.h>
 #include "multitread.h"
-
-// COMPILE FOR MAC: clang++ -std=c++17 main.cpp window.cpp -o main $(pkg-config --cflags --libs sdl3)
  
 void checkLoadInSDLLib(){
     if (!SDL_Init(SDL_INIT_VIDEO)){
