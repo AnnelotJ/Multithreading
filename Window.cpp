@@ -1,5 +1,3 @@
-#include <iostream>
-#include <SDL3/SDL.h>
 #include "multitread.h"
  
 void checkLoadInSDLLib(){

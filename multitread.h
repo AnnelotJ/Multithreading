@@ -1,6 +1,12 @@
     #pragma once  
 
     #include <SDL3/SDL.h>
+    #include <thread>
+    #include <iostream>
+    #include "multitread.h"
+    #include <atomic>
+    #include <unistd.h>
+    #include <random>
 
     struct App{
         SDL_Window* window = nullptr; 
@@ -15,6 +21,21 @@
         Uint8 r; 
         Uint8 g; 
         Uint8 b; 
+    };
+
+    struct ThreadController{ 
+        std::vector<std::thread> threads;
+
+        void makeThreads (int amountOfThreads) { 
+            for (int  i=0; i<amountOfThreads; i++){
+                threads.emplace_back();
+            }  
+            for (const auto& thread : threads){ 
+                std::cout<<"Thread: "<<thread.get_id() << std::endl;
+            } 
+        }
+            
+    
     };
 
 
