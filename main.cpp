@@ -14,16 +14,17 @@ std::vector<Sqaure> makeSqaures (){
     sqaures.push_back(sqaure2); 
     sqaures.push_back(sqaure3);
 
+    std::cout<<"Sqaures have been made";
+
     return sqaures;
 }
 
-// void changeColor (std::vector<Sqaure>& sqaure, int i){ 
-//     int x = randomNum(0,255); 
-//     std::cout<<x;
-//     sqaure[i].r = randomNum(0,255);
-//     sqaure[i].g = randomNum(0,255); 
-//     sqaure[i].b = randomNum(0,255);
-// }
+void changeColor (std::vector<Sqaure>& sqaure, int i){ 
+    int x = randomNum(0,255); 
+    sqaure[i].r = randomNum(0,255);
+    sqaure[i].g = randomNum(0,255); 
+    sqaure[i].b = randomNum(0,255);
+}
 
 int randomNum(int min, int max){ 
     static std::random_device seed; 
@@ -34,28 +35,10 @@ int randomNum(int min, int max){
 }
 
 
-void changeColor(std::vector<Sqaure>sqaure,std::mutex& lock,std::atomic<bool>& running, int i){ 
-    while(running){ 
-        sleep(3);
-        int randomNum = rand() % 255;
-        std::cout<<randomNum;
-    }
-}
-
-
 int main () { 
     checkLoadInSDLLib();
-    ThreadController threadController; 
-    threadController.makeThreads(4);
-
-   
-
-    // std::vector<Sqaure> sqaures = makeSqaures();
-
-    // changeColor(sqaures,2);
-    // generateWindow(sqaures);
-
-
+    std::vector<Sqaure> sqaures = makeSqaures();
+    generateWindow(sqaures);
 
 }
 
