@@ -85,6 +85,7 @@
                 for (std::thread& t : threads){
                     t.join();
                 }
+            std::cout<<"stopping all threads" << std::endl;
 
 
         }

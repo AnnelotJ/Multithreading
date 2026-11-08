@@ -40,6 +40,7 @@ int main () {
     threadController.makeThreads(4, sqaures); 
     generateWindow(sqaures, threadController); 
     threadController.stopThread();
+    
 }
 
 
