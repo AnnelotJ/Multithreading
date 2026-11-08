@@ -36,9 +36,9 @@ int randomNum(int min, int max){
 int main () { 
     checkLoadInSDLLib();
     std::vector<Sqaure> sqaures = makeSqaures();
-    generateWindow(sqaures);
     ThreadController threadController; 
-    threadController.makeThreads(4); 
-
+    threadController.makeThreads(4, sqaures); 
+    generateWindow(sqaures);
+    threadController.stopThread();
 }
 
