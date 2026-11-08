@@ -38,7 +38,8 @@ int main () {
     std::vector<Sqaure> sqaures = makeSqaures();
     ThreadController threadController; 
     threadController.makeThreads(4, sqaures); 
-    generateWindow(sqaures);
+    generateWindow(sqaures, threadController); 
     threadController.stopThread();
 }
+
 

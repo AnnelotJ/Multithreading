@@ -7,10 +7,11 @@ void checkLoadInSDLLib(){
     }
 }
 
-void generateWindow(const std::vector<Sqaure> sqaures){ 
+void generateWindow(const std::vector<Sqaure>& sqaures, ThreadController& threadController){ 
     App app;
     SDL_Event e;
     int isrunning = 1; 
+    int frame = 0; 
 
     app.window = SDL_CreateWindow("Annelot's window",600,600, 0);
     app.renderer = SDL_CreateRenderer(app.window, nullptr); 
@@ -25,12 +26,19 @@ void generateWindow(const std::vector<Sqaure> sqaures){
 
         SDL_SetRenderDrawColor(app.renderer,4,255,255,255);
         SDL_RenderClear(app.renderer); 
+
+        frame++; 
+
+        if (frame % 30 == 0 ){ 
+            threadController.addJob(randomNum(0,3));
+        }
         
         // x,y,size,r,g,b
         for (const Sqaure& sqaure : sqaures ){
             paintSqaure(app.renderer, sqaure);
         }
         
+    
         SDL_RenderPresent(app.renderer);
       
     }

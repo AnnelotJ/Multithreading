@@ -27,7 +27,6 @@
     };
 
     void checkLoadInSDLLib ();
-    void generateWindow(const std::vector<Sqaure> sqaures);
     void paintSqaure(SDL_Renderer*, const Sqaure&);
     std::vector<Sqaure> makeSqaures (); 
     void changeColor (std::vector<Sqaure>& sqaure, int i);
@@ -41,32 +40,38 @@
         bool running = true; 
 
         void makeThreads (int amountOfThreads, std::vector<Sqaure> &sqaures) { 
+            std::cout << "Starting with making threads:" <<std::endl;
             for (int i=0; i<amountOfThreads; i++){
                 threads.emplace_back([this, &sqaures]{waitForJobs(sqaures);});
-            }  
-            
-            for (const auto& thread : threads){
-                std::cout << thread.get_id() << std::endl;
             }
 
         }
 
         void waitForJobs (std::vector<Sqaure>& sqaures){ 
-            std::cout << "thread started " << std::endl; 
+            std::cout << "thread " << std::this_thread::get_id() << " started" << std::endl; 
 
             while (true){
                 int sqaureNumber; 
                 {
                     std::unique_lock<std::mutex> guard (lock); 
-                    std::cout<< "Thread going to sleep" << std::endl; 
+                    std::cout << "thread " << std::this_thread::get_id() << " going to sleep" << std::endl; 
                     wakeUp.wait (guard, [this] {return !job.empty() || !running; }); 
-                    std::cout << "thread wake up" << std:: endl; 
+                    std::cout << "thread " << std::this_thread::get_id() << " woke up " << std::endl; 
                     if (!running && job.empty()) return; 
                     sqaureNumber = job.front(); 
                     job.pop(); 
                 }
+
                 changeColor(sqaures, sqaureNumber);
             }
+        }
+
+        void addJob (int sqaureNumber){ 
+            {
+                std::lock_guard<std::mutex> guard(lock); 
+                job.push(sqaureNumber); 
+            }
+            wakeUp.notify_one();
         }
 
 
@@ -75,12 +80,12 @@
             {
                 std::lock_guard<std::mutex> guard(lock); 
                 running = false; 
-
+            }
                 wakeUp.notify_all(); 
                 for (std::thread& t : threads){
                     t.join();
                 }
-            }
+
 
         }
             
@@ -96,6 +101,8 @@
 
         
     };
+
+    void generateWindow(const std::vector<Sqaure>& sqaures, ThreadController& threadController);
 
 
 
