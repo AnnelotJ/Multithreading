@@ -14,8 +14,6 @@ std::vector<Sqaure> makeSqaures (){
     sqaures.push_back(sqaure2); 
     sqaures.push_back(sqaure3);
 
-    std::cout<<"Sqaures have been made";
-
     return sqaures;
 }
 
@@ -39,6 +37,8 @@ int main () {
     checkLoadInSDLLib();
     std::vector<Sqaure> sqaures = makeSqaures();
     generateWindow(sqaures);
+    ThreadController threadController; 
+    threadController.makeThreads(4); 
 
 }
 

@@ -9,6 +9,9 @@
     #include <atomic>
     #include <unistd.h>
     #include <random>
+    #include <condition_variable>
+    #include <mutex> 
+    #include <queue>
     
 
     struct Sqaure { 
@@ -24,12 +27,19 @@
 
     struct ThreadController{ 
         std::vector<std::thread> threads;
-        std::atomic<bool> running {true};
+        std::queue<int> job; 
+        std::mutex lock; 
+        std::condition_variable wakeUp; 
+        bool running = true; 
 
-        void makeThreads (int amountOfThreads, std::vector<Sqaure>& sqaures) { 
+        void makeThreads (int amountOfThreads) { 
             for (int  i=0; i<amountOfThreads; i++){
-                threads.emplace_back(, std::ref(sqaures), std::ref(running), i);
+                threads.emplace_back([this,&sqaures]{waitForJob(sqaures);});
             }  
+
+            for (const auto& thread : threads){
+                std::cout << thread.get_id();
+            }
         }
 
         void startThread (){ 
@@ -37,6 +47,13 @@
         }
 
         void stopThread(){ 
+            std::lock_guard<std::mutex> guard(lock); 
+            running = false; 
+
+            wakeUp.notify_all(); 
+            for (std::thread t : threads){
+                t.join();
+            }
 
         }
             

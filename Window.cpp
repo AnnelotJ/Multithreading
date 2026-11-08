@@ -12,7 +12,7 @@ void generateWindow(const std::vector<Sqaure> sqaures){
     SDL_Event e;
     int isrunning = 1; 
 
-    app.window = SDL_CreateWindow("Mr. Teddy Bear",600,600, 0);
+    app.window = SDL_CreateWindow("Annelot's window",600,600, 0);
     app.renderer = SDL_CreateRenderer(app.window, nullptr); 
     SDL_SetRenderVSync(app.renderer,1);
 
