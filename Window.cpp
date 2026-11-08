@@ -29,7 +29,7 @@ void generateWindow(const std::vector<Sqaure>& sqaures, ThreadController& thread
 
         frame++; 
 
-        if (frame % 30 == 0 ){ 
+        if (frame % 15 == 0 ){ 
             threadController.addJob(randomNum(0,3));
         }
         
